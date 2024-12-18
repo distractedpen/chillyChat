@@ -2,63 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Learning Websockets</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
   </head>
   <body>
-    <h1>Websocket Client</h1>
-    <hr />
-    <div>
-      <input type="text" id="usernameInput" placeholder="UserName" />
-      <input type="text" id="messageInput" placeholder="Enter your message" />
-      <button onClick="sendMessage()">Send</button>
-    </div>
-    <div id="messages"></div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
-  <script>
-    let ws;
-
-    function connect() {
-      ws = new WebSocket("ws://localhost:8080/ws");
-
-      ws.onopen = function () {
-        console.log("Connected to WebSocket server");
-      };
-
-      ws.onmessage = function (event) {
-        let messageDisplay = document.getElementById("messages");
-        let data = JSON.parse(event.data);
-        console.log(data);
-        messageDisplay.innerHTML += `<p><strong>${data.username}</strong>: ${data.text}</p>`;
-      };
-
-      ws.onclose = function () {
-        console.log("WebSocket connection closed, retrying...");
-        setTimeout(connect, 1000); // reconnect after 1 second
-      };
-
-      ws.onerror = function (error) {
-        console.error("WebSocket error:", error);
-      };
-    }
-
-    function sendMessage() {
-      let messageInput = document.getElementById("messageInput");
-      let usernameInput = document.getElementById("usernameInput");
-      let data = {
-        username: usernameInput.value,
-        text: messageInput.value,
-      };
-      ws.send(JSON.stringify(data));
-      messageInput.value = "";
-    }
-
-    connect();
-  </script>
 </html>

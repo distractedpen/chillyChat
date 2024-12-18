@@ -1,0 +1,43 @@
+.messageBoard {
+  width: 100%;
+  flex: 1;
+  border: 2px solid white;
+  overflow-y: scroll;
+}
+
+.messageContainer {
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 10px;
+}
+
+.userInput {
+  min-height: 10%;
+  flex: 0;
+  border: 2px solid white;
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.userInput input#usernameInput {
+  width: 30%;
+  height: 60%;
+  font-size: 1.1rem;
+  padding: 5px;
+}
+
+.userInput input#messageInput {
+  width: 60%;
+  height: 60%;
+  font-size: 1.1rem;
+  padding: 5px;
+}
+
+.userInput button { 
+    height: 40%;
+}
